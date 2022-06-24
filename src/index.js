@@ -40,9 +40,9 @@ class App extends React.Component {
                 <div className='main-div'>
                     <div className='sub-div'>
                         <h1>Know your Device's location</h1>
-                        <p className='permission'><i><q>Allow your location permission</q></i></p>
+                        <p className='permission'> <q><span>&#9888;</span><i> Allow your location permission</i></q></p>
                         <img width='480px' src={allow} alt='permission' />
-                        <p className='denied'>{this.state.errorMessage}</p>
+                        <p className='denied'>{this.state.errorMessage} &#128534;</p>
                     </div>
                 </div> 
             )
