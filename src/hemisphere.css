@@ -1,0 +1,39 @@
+.main-div {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:20px 0 ;
+}
+.sub-div {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 20px;
+}
+.denied {
+    color : red;
+    font-size: large;
+    font-weight: 800;
+    background-color: #eee6d5;
+}
+.code q {
+    padding: 10px;
+    border: 2px solid skyblue;
+    background-color: skyblue;
+    font-weight: 700;
+    font-size: 20px;
+}
+.code{
+    margin-top: 20px;
+}
+.permission{
+    font-size: large;
+    background-color: #eee6d5;
+    
+}
+
+p q {
+    font-size: large;
+    background-color: #eee6d5;
+    /* border: 1px solid black; */
+}
