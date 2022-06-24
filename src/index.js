@@ -1,58 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import allow from './image/allow.png';
+import Hemisphere from './hemisphere';
+import './hemisphere.css'
 
 class App extends React.Component {
-    constructor (props){
-        super(props);
+    state = {
+        latitude : null,
+        longitude : null,
+        errorMessage: '',
+    };
 
-        this.state = {
-            latitude : null,
-            longitude : null,
-            errorMessage: '',
-        };
-
+    componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
             (position) => {
-                console.log(position);
-                this.setState({latitude : position.coords.latitude + ' North'})
-                this.setState({longitude : position.coords.longitude + ' South'})
+                this.setState({latitude : position.coords.latitude})
+                this.setState({longitude : position.coords.longitude})
             } ,
             (error) => { 
-                console.log(error);
                 this.setState({errorMessage : error.message})
             }
         );
-
     }
    
     render() {
         if (this.state.latitude && !this.state.errorMessage){
             return (
-                <div style= {{margin:'100px auto', width:'50%', textAlign:'center', lineHeight:1.25}}>
-                    <div style={{borderRadius:'4px' ,border:'1px solid gray', padding:'10px'}}>
-                        <h1>Know your device location</h1>
-                        <p> Latitude: <q>{this.state.latitude}</q> <br/> Longitude: <q>{this.state.longitude}</q> </p>
+                <div className='main-div'>
+                    <div className='sub-div'>
+                        <h1>Know your Device's location</h1>
+                        <Hemisphere latitude={ this.state.latitude } longitude={ this.state.longitude }/>
+                    
                     </div>
                 </div>
             )
         }
         if (!this.state.latitude && this.state.errorMessage) {
             return (
-                <div style= {{margin:'100px auto', width:'50%', textAlign:'center', lineHeight:1.25}}>
-                    <div style={{borderRadius:'4px' ,border:'1px solid gray', padding:'10px'}}>
-                        <h1>Know your device location</h1>
-                        <p>{this.state.errorMessage}</p>
-                        <p><i>Allow location permission to know your location</i></p>
-                        <img width='240px' src={allow} alt='permission' />
+                <div className='main-div'>
+                    <div className='sub-div'>
+                        <h1>Know your Device's location</h1>
+                        <p className='permission'><i><q>Allow your location permission</q></i></p>
+                        <img width='480px' src={allow} alt='permission' />
+                        <p className='denied'>{this.state.errorMessage}</p>
                     </div>
                 </div> 
             )
         } else {
             return (
-                <div style= {{margin:'100px auto', width:'50%', textAlign:'center', lineHeight:1.25}}>
-                    <div style={{borderRadius:'4px' ,border:'1px solid gray', padding:'10px'}}>
-                        <h1>Know your device location</h1>
+                <div className='main-div'>
+                    <div className='sub-div'>
+                        <h1>Know your Device's location</h1>
                         <p> Latitude: Loading... <br/> Longitude: Loading... </p>
                     </div>
                 </div> 
@@ -65,3 +63,9 @@ ReactDOM.render(
     <App/>,
     document.getElementById('root')
 )
+
+// comment
+{/* <div className='main-div'>
+    <div style={{borderRadius:'4px' ,border:'1px solid gray', padding:'10px'}}>
+    </div>
+</div>  */}
